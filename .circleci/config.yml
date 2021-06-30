@@ -10,6 +10,16 @@ orbs:
   # NOTE: Environment variables containing the necessary secrets can be setup in the CircleCI UI
   # See here https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project
   heroku: circleci/heroku@1.2
+  slack: circleci/slack@4.4.2
+
+jobs:
+  notification:
+    docker:
+      # replace with your preferred image
+      - image: cimg/base
+    steps:
+      - slack/notify:
+          channel: notifications 
 
 workflows:
   # Below is the definition of your workflow.
