@@ -13,6 +13,7 @@ orbs:
   slack: circleci/slack@4.1
 
 jobs:
+
   deploy:
     docker:
       - image: 'cimg/base:stable'
@@ -23,6 +24,7 @@ jobs:
           mentions: '@Erick'
           template: basic_fail_1
       - slack/notify:
+          channel: integracion-continua
           event: pass
           template: success_tagged_deploy_1
   test:
@@ -39,6 +41,9 @@ workflows:
   sample:
     jobs:
       - node/test
+      - run:
+          name: "Remove Package Lock"
+          command: rm package-lock.json
       - heroku/deploy-via-git:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
           requires:
