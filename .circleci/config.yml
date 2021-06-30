@@ -13,13 +13,19 @@ orbs:
   slack: circleci/slack@4.4.2
 
 jobs:
-  notification:
-    docker:
-      # replace with your preferred image
-      - image: cimg/base
+  test:
+    executor: node/default
     steps:
+      - checkout
+      - run: npm install
+      - run: npm test
       - slack/notify:
-          channel: notifications 
+          event: fail
+          mentions: "@Erick Vicentin"
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
 
 workflows:
   # Below is the definition of your workflow.
@@ -28,11 +34,13 @@ workflows:
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   sample:
     jobs:
-      - node/test
+      - test:
+          context:
+            - SlackNotifs
       - heroku/deploy-via-git:
-          force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see: https://devcenter.heroku.com/articles/git
-          requires:
-            - node/test # only run deploy-via-git job if the build job has completed
-          filters:
-            branches:
-              only: master
+        force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see:
+        requires:
+          - test # only run deploy-via-git job if the build job has completed
+        filters:
+          branches:
+            only: master # Delete this line
