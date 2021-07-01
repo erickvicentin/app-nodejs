@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
+    "worker": "node app.js",
     "test": "mocha index.test.js"
   },
   "dependencies": {
