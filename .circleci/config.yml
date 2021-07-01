@@ -30,7 +30,6 @@ jobs:
               ]
             }
       - run: npm install
-      - run: rm package-lock.json
       - run: npm test
       - slack/notify:
           event: fail
@@ -85,9 +84,8 @@ workflows:
             - Slack
       - heroku/deploy-via-git:
           force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see:
-          requires: # if test & sonar-scan are ok --> then deploy via git
-            - test
-            - sonar-scan
+          requires:
+            - test # only run deploy-via-git job if the build job has completed
           filters:
             branches:
               only: master # Delete this line
