@@ -1,0 +1,36 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+  slack: circleci/slack@4.4.2
+  heroku: circleci/heroku@1.2
+
+jobs:
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - run: npm install
+      - run: rm package-lock.json
+      - run: npm test
+      - slack/notify:
+          event: fail
+          mentions: "@Erick Vicentin"
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
+
+workflows:
+  app-tests-and-deply:
+    jobs:
+      - test:
+          context:
+            - Slack
+      - heroku/deploy-via-git:
+          force: true # this parameter instructs the push to use a force flag when pushing to the heroku remote, see:
+          requires:
+            - test # only run deploy-via-git job if the build job has completed
+          filters:
+            branches:
+              only: master # Delete this line
