@@ -1,16 +1,12 @@
-var express = require("express");
-var app = express();
 
+const express = require('express')
+const app = express()
 const port = process.env.port || 3001
-const hostname = process.env.HOST || "127.0.0.1";
 
+app.get('/', (req, res) => {
+    res.send('Hello World! We are deployed')
+})
 
-app.get("/", function (req, res) {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain')
-  res.end('Hello World! We are deployed!')
-});
-
-var server = app.listen(port, function () {
-   console.log("We are live on port ", hostname, port);
-});
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+})
