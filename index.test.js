@@ -11,6 +11,8 @@ describe("Sum Test", function () {
         const expected = a+b
         let result = sum(a, b);
         console.log(`Value A: ${a}, Value B: ${b}, Expected: ${expected}, Result: ${result}`)
+        console.log(`Value A: ${a}, Value B: ${b}, Expected: ${expected}, Result: ${result}`)
+        console.log(`Value A: ${a}, Value B: ${b}, Expected: ${expected}, Result: ${result}`)
         assert.deepEqual(result, expected);
     });
 });
