@@ -4,6 +4,7 @@
   "description": "A simple app with nodejs",
   "main": "app.js",
   "scripts": {
+    "dev": "npm test && npm start",
     "start": "node app.js",
     "worker": "node app.js",
     "test": "mocha index.test.js"
