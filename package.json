@@ -2,7 +2,7 @@
   "name": "app-nodejs",
   "version": "1.0.0",
   "description": "A simple app with nodejs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "worker": "node app.js",
