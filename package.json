@@ -8,6 +8,9 @@
     "worker": "node app.js",
     "test": "mocha index.test.js"
   },
+  "engines": {
+    "node": "12.13.0"
+  },
   "dependencies": {
     "mocha": "^9.0.0"
   }
