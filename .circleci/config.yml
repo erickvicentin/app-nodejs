@@ -13,6 +13,13 @@ jobs:
       - run: npm install
       - run: rm package-lock.json
       - run: npm test
+      - slack/notify:
+          event: fail
+          mentions: "@Erick Vicentin"
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
 
 workflows:
   app-tests-and-deply:
