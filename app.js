@@ -7,8 +7,8 @@ const hostname = process.env.HOST || "127.0.0.1";
 
 app.get("/", function (req, res) {
   res.statusCode = 200;
-  res.set('Content-Type', 'text/html')
-  res.send(Buffer.from('<h1>Hello World! Hola Mundo!</h1>' + '<h2>We are deployed!</h2>'))
+  res.setHeader('Content-Type', 'text/plain')
+  res.end('Hello World! We are deployed!')
 });
 
 var server = app.listen(port, function () {
