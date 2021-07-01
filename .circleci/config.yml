@@ -12,6 +12,23 @@ jobs:
     executor: node/default
     steps:
       - checkout
+      - slack/notify:
+          event: always
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*Starting Test Job!! 💣*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
       - run: npm install
       - run: rm package-lock.json
       - run: npm test
@@ -21,20 +38,39 @@ jobs:
           template: basic_fail_1
       - slack/notify:
           event: pass
+          mentions: "@Erick Vicentin"
           template: basic_success_1
   sonar-scan:
     docker:
       - image: "cimg/node:14.16.1"
     steps:
       - checkout
+      - slack/notify:
+          event: always
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*Starting SonarCloud Job!! 🔍🕵🏻*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
       - run: npm install
       - sonarcloud/scan
       - slack/notify:
           event: fail
-          mentions: "@Jose"
+          mentions: "@Erick Vicentin"
           template: basic_fail_1
       - slack/notify:
           event: pass
+          mentions: "@Erick Vicentin"
           template: basic_success_1
 
 workflows:
