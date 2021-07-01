@@ -16,7 +16,7 @@ describe("Substraction Test", function () {
     it("return the subtraction from random values a & b", () => {
         const a = Math.floor(Math.random() * 10)
         const b = Math.floor(Math.random() * 10)
-        const expected = a-b
+        const expected = a-b+10
         let result = subtraction(a, b);
         console.log(`Value A: ${a}, Value B: ${b}, Expected: ${expected}, Result: ${result}`)
         assert.deepEqual(result, expected);
