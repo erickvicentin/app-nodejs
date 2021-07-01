@@ -12,7 +12,7 @@ describe("Sum Test", function () {
     });
 });
 
-deribe("Substraction Test", function () {
+describe("Substraction Test", function () {
     it("return the subtraction from random values a & b", () => {
         const a = Math.floor(Math.random() * 10)
         const b = Math.floor(Math.random() * 10)
