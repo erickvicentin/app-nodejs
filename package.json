@@ -3,13 +3,9 @@
   "version": "1.0.0",
   "description": "A simple app with nodejs",
   "main": "index.js",
-  "private": true,
   "scripts": {
     "start": "node app.js",
     "test": "mocha index.test.js"
-  },
-  "engines": {
-    "node": "^16.4.0"
   },
   "devDependencies": {
     "express": "^4.17.1",
